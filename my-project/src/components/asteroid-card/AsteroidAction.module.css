@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    align-items: center;
+}
+
+.button {
+    background: #186dd6;
+    width: auto;
+    height: 48px;
+    border-radius: 24px;
+    padding: 10px 16px;
+}
