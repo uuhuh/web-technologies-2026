@@ -7,3 +7,13 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
 }
+
+.containerDanger {
+    min-width: 1280px;
+    height: 200px;
+    background: linear-gradient(90deg, #FFB199 0%, #FF0844 100%);
+    border: 1px solid #000000;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
