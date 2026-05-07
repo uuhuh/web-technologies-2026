@@ -3,8 +3,11 @@ import styles from "./AsteroidCard.module.css"
 import { AsteroidData } from "./AsteroidData"
 
 export const AsteroidsCard = () => {
+
+    const isDanger = true
+
     return (
-        <div className={styles.container}>
+        <div className={isDanger ? styles.containerDanger : styles.container}>
             <AsteroidData />
             <AsteroidAction />
         </div>
