@@ -27,25 +27,24 @@ const getAsteroidImage = (diameter) => {
 }
 
 
-export const AsteroidData = ()=> {
+export const AsteroidData = ({name, distance, diameter, date, isKilometers, setKilometers})=> {
 
-    const diameter = 10
-
-
-    return <div
-        className={styles.container}
-        style={
-            getAsteroidImage(150)
-        }
-    >
-        <div>Dino</div>
-        <div>    
-            <div>AsteroidName</div>
-            <div>
-                <div>Distance</div>
-                <div>Diameter   {diameter}</div>
-                <div>Date</div>
+    return(
+        <div className={styles.container} style={getAsteroidImage(diameter)}>
+        <div className={styles.asteroidIcon}>
+            <img src="/dino.png"/>
+        </div>
+        <div className={styles.info}>   
+            <h3>{name}</h3>
+            <div className={styles.detail}><span>Дата</span> <span>{date}</span></div>
+            <div className={styles.detail}>
+                <span>Расстояние</span> 
+                <span onClick={() => setKilometers(!isKilometers)} >
+                    {isKilometers ? distance : (distance / 164000).toFixed(6)} км
+                </span>
             </div>
+            <div className={styles.detail}><span>Размер</span> <span>{diameter} м</span></div>
         </div>
     </div>
+    )
 }

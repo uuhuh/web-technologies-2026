@@ -2,14 +2,21 @@ import { AsteroidAction } from "./AsteroidAction"
 import styles from "./AsteroidCard.module.css"
 import { AsteroidData } from "./AsteroidData"
 
-export const AsteroidsCard = () => {
+export const AsteroidsCard = (props) => {
 
-    const isDanger = true
+    const {isDanger, name, distance, diameter, date, isKilometers, setKilometers} = props
 
     return (
         <div className={isDanger ? styles.containerDanger : styles.container}>
-            <AsteroidData />
-            <AsteroidAction />
+            <AsteroidData
+                name = {name} 
+                distance={distance} 
+                diameter={diameter} 
+                date={date}
+                isKilometers={isKilometers}
+                setKilometers={setKilometers}
+            />
+            <AsteroidAction isDanger={isDanger}/>
         </div>
     )
 }
