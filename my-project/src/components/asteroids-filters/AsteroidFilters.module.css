@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    height: 38px;
+}
+
+.checkboxContainer {
+    display: block;
+}
+
+.distanceSelector {
+    width: 379;
+    height: 20;
+    top: 184px;
+    left: 748px;
+}
+
+.distanceLabel {
+    max-width: 50%;
+    font-size: 14px;
+    color: #667;
+}
+
+.selected {
+    font-weight: 900;
+}

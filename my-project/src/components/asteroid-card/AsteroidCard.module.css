@@ -4,6 +4,7 @@
     background: linear-gradient(90deg, #CFF37D 0%, #7DE88C 100%);
     border: 1px solid #000000;
     border-radius: 10px;
+    box-sizing: border-box;
     display: grid;
     grid-template-columns: 2fr 1fr;
 }
