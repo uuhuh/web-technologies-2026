@@ -1,14 +1,20 @@
 import { AsteroidController } from "../../AsteroidController"
 import { AsteroidsCard } from "../asteroid-card/AsteroidCard"
 import { AsteroidFilters } from "../asteroids-filters/AsteroidFilters"
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 
 export const AsteroidsList = () => {
     const [isOnlyDanger, setIsOnlyDanger] = useState(false)
     
     const [isKilometers, setKilometers] = useState(true)
 
-    const [asteroids, setAsteroids] = useState(AsteroidController.getAsteroids())
+    const [asteroids, setAsteroids] = useState([])
+
+    useEffect(() => {
+        AsteroidController.getAsteroids().then((result)=> {
+            setAsteroids(result);
+        })
+    }, [])
 
     return(
         <div>
@@ -24,7 +30,7 @@ export const AsteroidsList = () => {
                 isKilometers={isKilometers}
                 setKilometers={setKilometers}
             />)
-                : asteroids.map((it) => 
+                : asteroids.map((it) =>
                 <AsteroidsCard 
                     {...it}
                     isKilometers={isKilometers}

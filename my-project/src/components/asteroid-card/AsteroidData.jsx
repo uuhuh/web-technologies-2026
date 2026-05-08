@@ -40,7 +40,7 @@ export const AsteroidData = ({name, distance, diameter, date, isKilometers, setK
             <div className={styles.detail}>
                 <span>Расстояние</span> 
                 <span onClick={() => setKilometers(!isKilometers)} >
-                    {isKilometers ? distance : (distance / 164000).toFixed(6)} км
+                    {isKilometers ? (distance + " км") : (distance / 384400).toFixed(6)}
                 </span>
             </div>
             <div className={styles.detail}><span>Размер</span> <span>{diameter} м</span></div>

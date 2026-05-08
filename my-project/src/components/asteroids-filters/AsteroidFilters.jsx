@@ -5,7 +5,10 @@ export const AsteroidFilters = ({isOnlyDanger, setIsOnlyDanger, isKilometers, se
     return (
         <div className={styles.container}>
             <div className={styles.checkboxContainer}>
-                <input type="checkbox" id="dangerous-filter" checked={isOnlyDanger} onClick={()=>{
+                <input type="checkbox" id="dangerous-filter" checked={isOnlyDanger} 
+                //onClick
+                onChange
+                ={()=>{
                     setIsOnlyDanger(!isOnlyDanger)
                 }}/>
                 <label htmlFor="dangerous-filter">Показать только опасные</label>
