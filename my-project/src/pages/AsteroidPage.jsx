@@ -1,30 +1,31 @@
 import { useParams } from "react-router"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { Header } from "../components/header/Header"
 import { Footer } from "../components/footer/Footer"
 import { AsteroidController } from "../AsteroidController"
 import { AsteroidData } from "../components/asteroid-card/AsteroidData";
 import styles from "./AsteroidPage.module.css";
-
+import { AsteroidsContext } from "../contexts/AsteroidsContext";
 
 export const AsteroidPage = () => {
-    
-    const {asteroidId} = useParams()
-
+    const { asteroidId } = useParams()
     const [asteroid, setAsteroid] = useState([])
+    const { state, dispatch } = useContext(AsteroidsContext)
+    const { isKilometers } = state
 
-    const [isKilometers, setKilometers] = useState(true)
-    
+    const setKilometers = (value) => {
+        dispatch({ type: "SET_KILOMETERS", payload: value })
+    }
+
     useEffect(() => {
-        AsteroidController.getAsteroidById(asteroidId).then((result)=> {
+        AsteroidController.getAsteroidById(asteroidId).then((result) => {
             setAsteroid(result);
         })
     }, [asteroidId])
-    
 
     return (
         <div className={styles.pageContainer}>
-            <Header />    
+            <Header />
             <div className={styles.card}>
                 <AsteroidData
                     name={asteroid.name}
@@ -32,9 +33,8 @@ export const AsteroidPage = () => {
                     diameter={asteroid.diameter}
                     date={asteroid.date}
                     isKilometers={isKilometers}
-                    setKilometers={setKilometers} 
+                    setKilometers={setKilometers}
                 />
-                
                 <div className={styles.detailsSection}>
                     <div className={styles.detailsTitle}>Детали сближения</div>
                     <div className={styles.detailsGrid}>
@@ -65,7 +65,6 @@ export const AsteroidPage = () => {
                     </div>
                 </div>
             </div>
-
             <Footer />
         </div>
     )
