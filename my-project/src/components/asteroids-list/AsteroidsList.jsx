@@ -1,42 +1,31 @@
-import { AsteroidController } from "../../AsteroidController"
 import { AsteroidsCard } from "../asteroid-card/AsteroidCard"
 import { AsteroidFilters } from "../asteroids-filters/AsteroidFilters"
-import {useEffect, useState} from 'react'
+import { useContext } from 'react'
+import { AsteroidsContext } from "../../contexts/AsteroidsContext"
 
 export const AsteroidsList = () => {
-    const [isOnlyDanger, setIsOnlyDanger] = useState(false)
-    
-    const [isKilometers, setKilometers] = useState(true)
+    const { state, dispatch } = useContext(AsteroidsContext)
+    const { asteroids, isOnlyDanger, isKilometers } = state
 
-    const [asteroids, setAsteroids] = useState([])
+    const setKilometers = (value) => {
+        dispatch({ type: "SET_KILOMETERS", payload: value })
+    }
 
-    useEffect(() => {
-        AsteroidController.getAsteroids().then((result)=> {
-            setAsteroids(result);
-        })
-    }, [])
+    const filteredAsteroids = isOnlyDanger
+        ? asteroids.filter(it => it.isDanger)
+        : asteroids
 
-    return(
+    return (
         <div>
-            <AsteroidFilters 
-                isOnlyDanger={isOnlyDanger} 
-                setIsOnlyDanger={setIsOnlyDanger}
-                isKilometers={isKilometers} 
-                setKilometers={setKilometers} 
-            />
-            {isOnlyDanger ? asteroids.filter((it) => it.isDanger).map((it) => 
-            <AsteroidsCard
-                {...it}
-                isKilometers={isKilometers}
-                setKilometers={setKilometers}
-            />)
-                : asteroids.map((it) =>
-                <AsteroidsCard 
-                    {...it}
+            <AsteroidFilters />
+            {filteredAsteroids.map(asteroid => (
+                <AsteroidsCard
+                    key={asteroid.id}
+                    {...asteroid}
                     isKilometers={isKilometers}
                     setKilometers={setKilometers}
                 />
-            )}
+            ))}
         </div>
     )
 }
